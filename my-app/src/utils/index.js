@@ -8,9 +8,7 @@ export const gridDefault = () => {
   const numCols = 10;
 
   // Fill array with 18 arrays each containing
-  const array = new Array(numRows)
-    .fill(null)
-    .map(() => new Array(numCols).fill(0));
+  const array = new Array(numRows).fill(null).map(() => new Array(numCols).fill(0));
 
   return array;
 };

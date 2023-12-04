@@ -5,8 +5,8 @@ import { shapes } from '../utils';
 import GridSquare from './GridSquare';
 
 // Draws the "next" block view showing the next block to drop
-const NextBlock = (props) => {
-  const nextShape = useSelector((state) => state.game.nextShape);
+const NextBlock = props => {
+  const nextShape = useSelector(state => state.game.nextShape);
   const box = shapes[nextShape][0]; // Get the first rotation
 
   // const box = [
