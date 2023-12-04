@@ -1,0 +1,30 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "bracketSpacing": true,
+  "printWidth": 120,
+  "arrowParens": "avoid",
+  "proseWrap": "always",
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": ["**/*.js", "**/*.ts"],
+      "options": {
+        "singleQuote": true
+      }
+    },
+    {
+      "files": ["**/*.yml", "**/*.yaml"],
+      "options": {
+        "singleQuote": true
+      }
+    },
+    {
+      "files": ["*.gql"],
+      "options": {
+        "printWidth": 80
+      }
+    }
+  ]
+}
