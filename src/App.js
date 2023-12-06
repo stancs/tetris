@@ -19,7 +19,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">React & Redux Tetris</h1>
+          <h1 className="App-title">React Tetris</h1>
         </header>
         <GridBoard />
         <NextBlock />
