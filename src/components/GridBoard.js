@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import GridSquare from './GridSquare';
 import { moveDown } from '../actions';
 import { shapes } from '../utils';
-import GridSquare from './GridSquare';
 
 const GridBoard = props => {
   const requestRef = useRef();
