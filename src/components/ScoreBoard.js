@@ -1,6 +1,13 @@
+import { pause, restart, resume } from '../actions';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Button from '@mui/material/Button';
+import PauseCircleFilledOutlinedIcon from '@mui/icons-material/PauseCircleFilledOutlined';
+import PlayCircleFilledOutlinedIcon from '@mui/icons-material/PlayCircleFilledOutlined';
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { pause, resume, restart } from '../actions';
+import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 const ScoreBoard = props => {
   const dispatch = useDispatch();
@@ -8,11 +15,10 @@ const ScoreBoard = props => {
   const { score, isRunning, gameOver } = game;
 
   return (
-    <div className="score-board">
-      <div>Score:{score}</div>
-      <div>Level: 1</div>
-      <button
-        className="score-board-button"
+    <Stack spacing={2}>
+      <Typography variant="h5">Score:{score}</Typography>
+      <Typography variant="h5">Level: 1</Typography>
+      <Button
         onClick={e => {
           if (gameOver) {
             return;
@@ -23,18 +29,21 @@ const ScoreBoard = props => {
             dispatch(resume());
           }
         }}
+        startIcon={isRunning ? <PauseCircleFilledOutlinedIcon /> : <PlayCircleFilledOutlinedIcon />}
+        variant="contained"
       >
         {isRunning ? 'Pause' : 'Play'}
-      </button>
-      <button
-        className="score-board-button"
+      </Button>
+      <Button
         onClick={e => {
           dispatch(restart());
         }}
+        startIcon={<RestartAltOutlinedIcon />}
+        variant="contained"
       >
         Restart
-      </button>
-    </div>
+      </Button>
+    </Stack>
   );
 };
 

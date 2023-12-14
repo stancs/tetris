@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { moveDown, moveLeft, moveRight, rotate } from '../actions';
+import { useDispatch, useSelector } from 'react-redux';
+
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
+import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
+import Button from '@mui/material/Button';
+import Rotate90DegreesCwIcon from '@mui/icons-material/Rotate90DegreesCw';
+import SouthOutlinedIcon from '@mui/icons-material/SouthOutlined';
+import Stack from '@mui/material/Stack';
 
 const Controls = props => {
   const dispatch = useDispatch();
@@ -42,9 +49,8 @@ const Controls = props => {
   }, [dispatch, isRunning, gameOver]);
 
   return (
-    <div className={`controls`}>
-      {/* left */}
-      <button
+    <Stack direction="row" alignItems="flex-end" justifyContent="space-even" spacing={2}>
+      <Button
         disabled={!isRunning || gameOver}
         className="control-button"
         onClick={e => {
@@ -53,12 +59,44 @@ const Controls = props => {
           }
           dispatch(moveLeft());
         }}
-      >
-        Left
-      </button>
+        startIcon={<ArrowBackOutlinedIcon />}
+        variant="contained"
+      />
 
-      {/* right */}
-      <button
+      <Stack spacing={2} alignItems="center" justifyContent="center">
+        <Button
+          fullWidth
+          component="label"
+          variant="contained"
+          disabled={!isRunning || gameOver}
+          className="control-button"
+          onClick={e => {
+            if (!isRunning || gameOver) {
+              return;
+            }
+            dispatch(rotate());
+          }}
+          startIcon={<Rotate90DegreesCwIcon />}
+        >
+          Rotate
+        </Button>
+
+        <Button
+          fullWidth
+          // component="label"
+          variant="contained"
+          disabled={!isRunning || gameOver}
+          className="control-button"
+          onClick={e => {
+            if (!isRunning || gameOver) {
+              return;
+            }
+            dispatch(moveDown());
+          }}
+          startIcon={<SouthOutlinedIcon />}
+        />
+      </Stack>
+      <Button
         disabled={!isRunning || gameOver}
         className="control-button"
         onClick={e => {
@@ -67,38 +105,10 @@ const Controls = props => {
           }
           dispatch(moveRight());
         }}
-      >
-        Right
-      </button>
-
-      {/* rotate */}
-      <button
-        disabled={!isRunning || gameOver}
-        className="control-button"
-        onClick={e => {
-          if (!isRunning || gameOver) {
-            return;
-          }
-          dispatch(rotate());
-        }}
-      >
-        Rotate
-      </button>
-
-      {/* down */}
-      <button
-        disabled={!isRunning || gameOver}
-        className="control-button"
-        onClick={e => {
-          if (!isRunning || gameOver) {
-            return;
-          }
-          dispatch(moveDown());
-        }}
-      >
-        Down
-      </button>
-    </div>
+        startIcon={<ArrowForwardOutlinedIcon />}
+        variant="contained"
+      />
+    </Stack>
   );
 };
 
