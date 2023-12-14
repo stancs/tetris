@@ -59,7 +59,7 @@ const Controls = props => {
           }
           dispatch(moveLeft());
         }}
-        startIcon={<ArrowBackOutlinedIcon />}
+        startIcon={<ArrowBackOutlinedIcon style={{ marginLeft: '8px' }} />}
         variant="contained"
       />
 
@@ -93,7 +93,7 @@ const Controls = props => {
             }
             dispatch(moveDown());
           }}
-          startIcon={<SouthOutlinedIcon />}
+          startIcon={<SouthOutlinedIcon style={{ marginLeft: '8px' }} />}
         />
       </Stack>
       <Button
@@ -105,7 +105,7 @@ const Controls = props => {
           }
           dispatch(moveRight());
         }}
-        startIcon={<ArrowForwardOutlinedIcon />}
+        startIcon={<ArrowForwardOutlinedIcon style={{ marginLeft: '8px' }} />}
         variant="contained"
       />
     </Stack>
