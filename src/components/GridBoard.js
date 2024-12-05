@@ -38,27 +38,30 @@ const GridBoard = props => {
     });
   });
 
-  const update = time => {
-    requestRef.current = requestAnimationFrame(update);
-    if (!isRunning) {
-      return;
-    }
-    if (!lastUpdateTimeRef.current) {
+  const update = React.useCallback(
+    time => {
+      requestRef.current = requestAnimationFrame(update);
+      if (!isRunning) {
+        return;
+      }
+      if (!lastUpdateTimeRef.current) {
+        lastUpdateTimeRef.current = time;
+      }
+      const deltaTime = time - lastUpdateTimeRef.current;
+      progressTimeRef.current += deltaTime;
+      if (progressTimeRef.current > speed) {
+        dispatch(moveDown());
+        progressTimeRef.current = 0;
+      }
       lastUpdateTimeRef.current = time;
-    }
-    const deltaTime = time - lastUpdateTimeRef.current;
-    progressTimeRef.current += deltaTime;
-    if (progressTimeRef.current > speed) {
-      dispatch(moveDown());
-      progressTimeRef.current = 0;
-    }
-    lastUpdateTimeRef.current = time;
-  };
+    },
+    [isRunning, dispatch, speed],
+  );
 
   useEffect(() => {
     requestRef.current = requestAnimationFrame(update);
     return () => cancelAnimationFrame(requestRef.current);
-  }, [isRunning]);
+  }, [isRunning, update]);
 
   return <div className="grid-board">{gridSquares}</div>;
 };
